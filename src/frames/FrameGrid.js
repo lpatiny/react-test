@@ -14,20 +14,8 @@ function FrameGrid(props) {
   React.useEffect(() => {
     window.addEventListener('resize', () => {
       gridApi.sizeColumnsToFit();
-      console.log('RESIZE');
     });
-
-    const interval = setInterval(() => {
-      allRows.push({
-        make: 'Porsche',
-        model: 'Boxter',
-        price: Math.floor(Math.random() * 1000),
-        id: window.performance.now()
-      });
-      setRowData(allRows.slice(0));
-    }, 1000);
-    return () => clearInterval(interval);
-  });
+  }, [gridApi]); // need to provide gridApi to the useEffect
 
   const columnDefs = [
     {
@@ -70,6 +58,7 @@ function FrameGrid(props) {
           suppressCellSelection={true}
           onGridReady={params => {
             gridApi = params.api;
+            console.log(gridApi);
             gridApi.sizeColumnsToFit();
           }}
           defaultColDef={{
@@ -81,7 +70,7 @@ function FrameGrid(props) {
             return data.id;
           }}
           columnDefs={columnDefs}
-          rowData={rowData}
+          rowData={props.frameRows}
         />
       </div>
     </div>

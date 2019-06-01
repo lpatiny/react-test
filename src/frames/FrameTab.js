@@ -1,7 +1,6 @@
 import React from 'react';
 
 import FrameGrid from './FrameGrid';
-import FrameInfo from './FrameInfo';
 import PrintJSON from '../components/PrintJSON';
 
 const style = {
@@ -17,8 +16,10 @@ function FrameTab(props) {
   const [currentRow, setCurrentRow] = React.useState({});
   return (
     <div style={style}>
-      <FrameGrid setCurrentRow={setCurrentRow} />
-      <PrintJSON value={currentRow} />
+      <FrameGrid frameRows={props.frameRows} setCurrentRow={setCurrentRow} />
+      <div style={{ width: '200px', textAlign: 'left' }}>
+        <PrintJSON value={currentRow} />
+      </div>
     </div>
   );
 }
