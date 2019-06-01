@@ -7,15 +7,6 @@ import DataTab from './data/DataTab';
 import FrameTab from './frames/FrameTab';
 
 function App() {
-  let [value, setValue] = React.useState(0);
-
-  React.useEffect(() => {
-    const interval = window.setInterval(() => {
-      setValue(Date.now());
-    }, 1000);
-    return () => clearInterval(interval);
-  });
-
   return (
     <div className="App" style={{ height: '100%' }}>
       <Tabs defaultActiveKey="frames" id="uncontrolled-tab-example">

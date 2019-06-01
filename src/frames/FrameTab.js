@@ -13,7 +13,7 @@ const style = {
   minHeight: '100%'
 };
 
-function FrameTab() {
+function FrameTab(props) {
   const [currentRow, setCurrentRow] = React.useState({});
   return (
     <div style={style}>

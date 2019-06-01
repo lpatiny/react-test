@@ -8,9 +8,9 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 const allRows = [];
 
 function FrameGrid(props) {
-  const [rowData, setRowData] = React.useState(allRows);
-
   let gridApi;
+
+  const [rowData, setRowData] = React.useState(allRows);
   React.useEffect(() => {
     window.addEventListener('resize', () => {
       gridApi.sizeColumnsToFit();
@@ -27,7 +27,7 @@ function FrameGrid(props) {
       setRowData(allRows.slice(0));
     }, 1000);
     return () => clearInterval(interval);
-  }, [gridApi]);
+  });
 
   const columnDefs = [
     {
