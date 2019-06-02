@@ -12,9 +12,11 @@ function FrameGrid(props) {
 
   const [rowData, setRowData] = React.useState(allRows);
   React.useEffect(() => {
-    window.addEventListener('resize', () => {
+    const listener = () => {
       gridApi.sizeColumnsToFit();
-    });
+    };
+    window.addEventListener('resize', listener);
+    return () => window.removeEventListener('resize', listener);
   }, [gridApi]); // need to provide gridApi to the useEffect
 
   const columnDefs = [
