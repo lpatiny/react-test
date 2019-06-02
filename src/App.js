@@ -13,13 +13,12 @@ function App() {
   // here we will receive data from the websocket
   React.useEffect(() => {
     const interval = setInterval(() => {
-      frameRows.push({
+      setFrameRows(frameRows.concat({
         make: 'Porsche',
         model: 'Boxter',
         price: Math.floor(Math.random() * 1000),
         id: window.performance.now()
-      });
-      setFrameRows(frameRows.slice(0));
+      }));
     }, 1000);
     return () => clearInterval(interval);
   });
