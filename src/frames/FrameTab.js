@@ -2,6 +2,7 @@ import React from 'react';
 
 import FrameGrid from './FrameGrid';
 import PrintJSON from '../components/PrintJSON';
+import ObjectInspector from 'react-object-inspector';
 
 const style = {
   display: 'flex',
@@ -18,7 +19,11 @@ function FrameTab(props) {
     <div style={style}>
       <FrameGrid frameRows={props.frameRows} setCurrentRow={setCurrentRow} />
       <div style={{ width: '200px', textAlign: 'left' }}>
-        <PrintJSON value={currentRow} />
+        <ObjectInspector
+          name="Frame"
+          data={currentRow}
+          initialExpandedPaths={['*']}
+        />
       </div>
     </div>
   );

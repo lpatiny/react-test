@@ -6,22 +6,33 @@ import { Tab, Tabs } from 'react-bootstrap';
 import DataTab from './data/DataTab';
 import FrameTab from './frames/FrameTab';
 
+import FrameGenerator from './frames/FrameGenerator';
+import DataGenerator from './data/DataGenerator';
+
 function App() {
   const [frameRows, setFrameRows] = React.useState([]);
   const [dataRows, setDataRows] = React.useState([]);
 
-  // here we will receive data from the websocket
+  // here we will receive frames from the websocket
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      frameRows.push({
-        make: 'Porsche',
-        model: 'Boxter',
-        price: Math.floor(Math.random() * 1000),
-        id: window.performance.now()
-      });
-      setFrameRows(frameRows.slice(0));
-    }, 1000);
-    return () => clearInterval(interval);
+    let frameGenerator = new FrameGenerator();
+    frameGenerator.start();
+    let callback = data => {
+      setFrameRows(frameRows.concat(data));
+    };
+    frameGenerator.on('frame', callback);
+    return () => frameGenerator.off('frame', callback);
+  });
+
+  // here we will receive frames from the websocket
+  React.useEffect(() => {
+    let dataGenerator = new DataGenerator();
+    dataGenerator.start();
+    let callback = data => {
+      setDataRows(dataRows.concat(data));
+    };
+    dataGenerator.on('data', callback);
+    return () => dataGenerator.off('data', callback);
   });
 
   return (
@@ -31,7 +42,7 @@ function App() {
           <FrameTab frameRows={frameRows} />
         </Tab>
         <Tab eventKey="data" title="Data">
-          <DataTab />
+          <DataTab dataRows={dataRows} />
         </Tab>
       </Tabs>
     </div>
