@@ -8,16 +8,15 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 const allRows = [];
 
 function FrameGrid(props) {
-  let gridApi;
-
+  const gridApi = React.useRef();
   const [rowData, setRowData] = React.useState(allRows);
   React.useEffect(() => {
     const listener = () => {
-      gridApi.sizeColumnsToFit();
+      gridApi.current.sizeColumnsToFit();
     };
     window.addEventListener('resize', listener);
     return () => window.removeEventListener('resize', listener);
-  }, [gridApi]); // need to provide gridApi to the useEffect
+  });
 
   const columnDefs = [
     {
@@ -58,10 +57,10 @@ function FrameGrid(props) {
           paginationPageSize={1000}
           suppressPaginationPanel={false}
           suppressCellSelection={true}
-          onGridReady={params => {
-            gridApi = params.api;
-            console.log(gridApi);
-            gridApi.sizeColumnsToFit();
+          onGridReady={(params) => {
+            gridApi.current = params.api;
+            console.log(gridApi.current);
+            gridApi.current.sizeColumnsToFit();
           }}
           defaultColDef={{
             filter: true,
