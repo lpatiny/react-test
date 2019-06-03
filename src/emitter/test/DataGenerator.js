@@ -11,6 +11,7 @@ class DataGenerator extends EventsEmitter {
     while (this.enable) {
       this.emit('data', {
         id: window.performance.now(),
+        epoch: Date.now(),
         dataTypeID: 11,
         dataTypeFullID: 'uavcan.protocol.param.GetSet',
         bytes: [25, 194, 5, 1, 210, 4, 0, 0, 0, 0, 0, 0],
