@@ -1,7 +1,6 @@
 import React from 'react';
 
 import FrameGrid from './FrameGrid';
-import PrintJSON from '../components/PrintJSON';
 import ObjectInspector from 'react-object-inspector';
 
 const style = {
@@ -18,7 +17,7 @@ function FrameTab(props) {
   return (
     <div style={style}>
       <FrameGrid frameRows={props.frameRows} setCurrentRow={setCurrentRow} />
-      <div style={{ width: '200px', textAlign: 'left' }}>
+      <div style={{ width: '300px', textAlign: 'left' }}>
         <ObjectInspector
           name="Frame"
           data={currentRow}

@@ -11,7 +11,7 @@ class FrameGenerator extends EventsEmitter {
     while (this.enable) {
       this.emit('frame', {
         id: window.performance.now(),
-        timeStamp: Date.now(),
+        epoch: Date.now(),
         priority: 24,
         isService: false,
         sourceNodeID: 12,

@@ -1,12 +1,12 @@
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import DisplayBoolean from '../components/DisplayBoolean';
-import BytesAsHex from '../components/BytesAsHex';
+import DisplayBoolean from '../../components/DisplayBoolean';
+import BytesAsHex from '../../components/BytesAsHex';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-function DataGrid(props) {
+function FrameGrid(props) {
   const gridApi = React.useRef();
   React.useEffect(() => {
     let resizer = () => {
@@ -100,4 +100,4 @@ function DataGrid(props) {
   );
 }
 
-export default DataGrid;
+export default FrameGrid;

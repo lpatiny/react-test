@@ -1,7 +1,7 @@
 import React from 'react';
 
 import DataGrid from './DataGrid';
-import PrintJSON from '../components/PrintJSON';
+import ObjectInspector from 'react-object-inspector';
 
 const style = {
   display: 'flex',
@@ -17,8 +17,12 @@ function DataTab(props) {
   return (
     <div style={style}>
       <DataGrid frameRows={props.dataRows} setCurrentRow={setCurrentRow} />
-      <div style={{ width: '200px', textAlign: 'left' }}>
-        <PrintJSON value={currentRow} />
+      <div style={{ width: '300px', textAlign: 'left' }}>
+        <ObjectInspector
+          name="Frame"
+          data={currentRow}
+          initialExpandedPaths={['*']}
+        />
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 import React from 'react';
-import './App.css';
 import './bootstrap.min.css';
-import './fullHeight.css';
-import { Tab, Tabs } from 'react-bootstrap';
-import DataTab from './data/DataTab';
-import FrameTab from './frames/FrameTab';
 
-import FrameGenerator from './frames/FrameGenerator';
-import DataGenerator from './data/DataGenerator';
+import './custom.css';
+import { Tab, Tabs } from 'react-bootstrap';
+import DataTab from './tabs/data/DataTab';
+import FrameTab from './tabs/frames/FrameTab';
+import HomeTab from './tabs/home/HomeTab';
+import FrameGenerator from './emitter/test/FrameGenerator';
+import DataGenerator from './emitter/test/DataGenerator';
 
 function App() {
   const [frameRows, setFrameRows] = React.useState([]);
@@ -37,7 +37,10 @@ function App() {
 
   return (
     <div className="App" style={{ height: '100%' }}>
-      <Tabs defaultActiveKey="frames" id="uncontrolled-tab-example">
+      <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
+        <Tab eventKey="home" title="Home">
+          <HomeTab frameRows={frameRows} dataRows={dataRows} />
+        </Tab>
         <Tab eventKey="frames" title="Frames">
           <FrameTab frameRows={frameRows} />
         </Tab>
