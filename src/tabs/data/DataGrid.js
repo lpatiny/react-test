@@ -36,27 +36,12 @@ function DataGrid(props) {
       cellRendererFramework: DisplayBoolean
     },
     {
-      headerName: 'Start',
-      field: 'startTransfer',
-      cellRendererFramework: DisplayBoolean
+      headerName: 'Data type',
+      field: 'dataTypeID'
     },
     {
-      headerName: 'End',
-      field: 'endTransfer',
-      cellRendererFramework: DisplayBoolean
-    },
-    {
-      headerName: 'Toggle',
-      field: 'toggleBit'
-    },
-    {
-      headerName: 'Transfer ID',
-      field: 'transferID'
-    },
-    {
-      headerName: 'Payload',
-      field: 'payload',
-      cellRendererFramework: BytesAsHex,
+      headerName: 'Data type full',
+      field: 'dataTypeFullID',
       minWidth: 200
     }
   ];

@@ -16,28 +16,36 @@ function App() {
   // here we will receive frames from the websocket
   React.useEffect(() => {
     let frameGenerator = new FrameGenerator();
+    let currentData = [];
     frameGenerator.start();
     let callback = data => {
-      setFrameRows(frameRows.concat(data));
+      currentData = currentData.concat(data);
+      setFrameRows(currentData);
     };
     frameGenerator.on('frame', callback);
     return () => frameGenerator.off('frame', callback);
-  });
+  }, []);
 
   // here we will receive frames from the websocket
   React.useEffect(() => {
     let dataGenerator = new DataGenerator();
+    let currentData = [];
     dataGenerator.start();
     let callback = data => {
-      setDataRows(dataRows.concat(data));
+      currentData = currentData.concat(data);
+      setDataRows(currentData);
     };
     dataGenerator.on('data', callback);
     return () => dataGenerator.off('data', callback);
-  });
+  }, []);
 
   return (
     <div className="App" style={{ height: '100%' }}>
-      <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
+      <Tabs
+        defaultActiveKey="home"
+        unmountOnExit={true}
+        id="uncontrolled-tab-example"
+      >
         <Tab eventKey="home" title="Home">
           <HomeTab frameRows={frameRows} dataRows={dataRows} />
         </Tab>

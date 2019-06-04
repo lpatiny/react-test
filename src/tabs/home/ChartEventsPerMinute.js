@@ -10,13 +10,13 @@ function ChartEventsPerMinute(props) {
   useEffect(() => {
     dygraph.current = new Dygraph(elementID.current, [], {
       title: props.title,
-      titleHeight: 32,
+      titleHeight: 24,
       ylabel: 'Nb events',
       xlabel: 'Time (min)',
-      gridLineWidth: '0.1',
+      gridLineWidth: '0.3',
       connectSeparatedPoints: true,
-      axes: { x: { axisLabelFontSize: 9 }, y: { axisLabelFontSize: 9 } },
-      labels: ['Date', 'Tampines Ave10 (Stn 40)']
+      axes: { x: { axisLabelFontSize: 16 }, y: { axisLabelFontSize: 16 } },
+      labels: ['Last x min', 'Nb events']
     });
     return () => {};
   }, [props.title]);
@@ -25,7 +25,7 @@ function ChartEventsPerMinute(props) {
     dygraph.current.updateOptions({ file: props.data });
   }, [props.data]);
 
-  return <div id={elementID.current} />;
+  return <div id={elementID.current} style={{ width: '100%' }} />;
 }
 
 export default ChartEventsPerMinute;

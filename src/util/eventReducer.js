@@ -5,6 +5,7 @@ function eventReducer(data, options = {}) {
     propertyName = 'epoch'
   } = options;
 
+  if (!data) return;
   // need first to filter the data
   let startEpoch = Date.now() - numberOfSlots * secondsPerSlot * 1000;
 
@@ -14,7 +15,7 @@ function eventReducer(data, options = {}) {
   }
   for (let datum of data) {
     let index = Math.floor(
-      (datum.epoch - startEpoch - 1) / (secondsPerSlot * 1000)
+      (datum[propertyName] - startEpoch - 1) / (secondsPerSlot * 1000)
     );
     if (index >= 0 && index < dataSlot.length) dataSlot[index][1]++;
   }

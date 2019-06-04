@@ -7,15 +7,13 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 function FrameGrid(props) {
-  const gridApi = React.useRef();
+  const gridApi = React.useRef({});
 
   React.useEffect(() => {
-    console.log('RESIZE');
     let resizer = () => {
       gridApi.current.sizeColumnsToFit();
     };
     window.addEventListener('resize', resizer);
-    resizer();
     return () => window.removeEventListener('resize', resizer);
   }, []);
 
