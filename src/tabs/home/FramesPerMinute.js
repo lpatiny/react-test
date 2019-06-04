@@ -7,22 +7,24 @@ import throttle from 'lodash/throttle';
 function FramesPerMinute(props) {
   const [framesPerMinute, setFramesPerMinute] = React.useState([]);
 
-  const throttled = React.useRef(
-    throttle(
-      frameRows => {
-        let data = eventReducer(frameRows, {
-          numberOfSlots: 10,
-          secondsPerSlot: 60,
-          propertyName: 'epoch'
-        });
-        setFramesPerMinute(data);
-      },
-      5000,
-      { leading: true, trailing: false }
-    )
+  const throttled = React.useCallback(
+    () =>
+      throttle(
+        frameRows => {
+          let data = eventReducer(frameRows, {
+            numberOfSlots: 10,
+            secondsPerSlot: 60,
+            propertyName: 'epoch'
+          });
+          setFramesPerMinute(data);
+        },
+        5000,
+        { leading: true, trailing: false }
+      ),
+    []
   );
 
-  React.useEffect(() => throttled.current(props.frameRows), [
+  React.useEffect(() => throttled(props.frameRows), [
     props.frameRows,
     throttled
   ]);
