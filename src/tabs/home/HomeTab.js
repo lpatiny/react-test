@@ -4,27 +4,27 @@ import ListNodes from './ListNodes';
 import FramesPerMinute from './FramesPerMinute';
 import DataPerMinute from './DataPerMinute';
 import ReceivedFrames from './ReceivedFrames';
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, ResponsiveEmbed } from 'react-bootstrap';
 
 function HomeTab(props) {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col sm={12} md={4}>
           <ListNodes frameRows={props.frameRows} />
         </Col>
-        <Col>
+        <Col sm={12} md={4}>
           <ReceivedFrames value={props.frameRows.length} />
         </Col>
-        <Col>
+        <Col sm={12} md={4}>
           <ReceivedData value={props.dataRows.length} />
         </Col>
       </Row>
       <Row>
-        <Col style={{ width: '50%' }}>
+        <Col sm={12} md={6}>
           <FramesPerMinute frameRows={props.frameRows} />
         </Col>
-        <Col style={{ width: '50%' }}>
+        <Col sm={12} md={6}>
           <DataPerMinute dataRows={props.dataRows} />
         </Col>
       </Row>

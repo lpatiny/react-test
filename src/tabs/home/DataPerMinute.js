@@ -8,20 +8,23 @@ function DataPerMinute(props) {
   const [dataPerMinute, setDataPerMinute] = React.useState([]);
 
   const throttled = React.useRef(
-    throttle(dataRows => {
-      let data = eventReducer(dataRows, {
-        numberOfSlots: 10,
-        secondsPerSlot: 60,
-        propertyName: 'epoch'
-      });
-      setDataPerMinute(data);
-    }, 5000)
+    throttle(
+      dataRows => {
+        let data = eventReducer(dataRows, {
+          numberOfSlots: 10,
+          secondsPerSlot: 60,
+          propertyName: 'epoch'
+        });
+        setDataPerMinute(data);
+      },
+      5000,
+      { leading: true, trailing: false }
+    )
   );
 
-  React.useEffect(() => throttled.current(props.dataRows), [
-    props.dataRows,
-    throttled
-  ]);
+  React.useEffect(() => {
+    throttled.current(props.dataRows);
+  }, [props.dataRows]);
 
   return (
     <Card>

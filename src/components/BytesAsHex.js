@@ -1,5 +1,3 @@
-import React from 'react';
-
 function BytesAsHex(props) {
   let value = props.value;
   if (!Array.isArray(value)) return '';

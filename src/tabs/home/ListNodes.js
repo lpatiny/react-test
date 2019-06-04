@@ -28,9 +28,11 @@ function ListNodes(props) {
         >
           {Object.keys(sources).map(key => {
             return sources[key] >= now ? (
-              <span>{key} </span>
+              <span key={key}>{key} </span>
             ) : (
-              <span style={{ opacity: 0.2 }}>{key} </span>
+              <span key={key} style={{ opacity: 0.2 }}>
+                {key}{' '}
+              </span>
             );
           })}
         </Card.Text>

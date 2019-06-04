@@ -8,14 +8,18 @@ function FramesPerMinute(props) {
   const [framesPerMinute, setFramesPerMinute] = React.useState([]);
 
   const throttled = React.useRef(
-    throttle(frameRows => {
-      let data = eventReducer(frameRows, {
-        numberOfSlots: 10,
-        secondsPerSlot: 60,
-        propertyName: 'epoch'
-      });
-      setFramesPerMinute(data);
-    }, 5000)
+    throttle(
+      frameRows => {
+        let data = eventReducer(frameRows, {
+          numberOfSlots: 10,
+          secondsPerSlot: 60,
+          propertyName: 'epoch'
+        });
+        setFramesPerMinute(data);
+      },
+      5000,
+      { leading: true, trailing: false }
+    )
   );
 
   React.useEffect(() => throttled.current(props.frameRows), [

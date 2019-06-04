@@ -1,7 +1,6 @@
 import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import DisplayBoolean from '../../components/DisplayBoolean';
-import BytesAsHex from '../../components/BytesAsHex';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
