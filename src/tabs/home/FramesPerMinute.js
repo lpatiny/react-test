@@ -7,7 +7,7 @@ import throttle from 'lodash/throttle';
 function FramesPerMinute(props) {
   const [framesPerMinute, setFramesPerMinute] = React.useState([]);
 
-  const throttled = React.useCallback(
+  const throttled = React.useMemo(
     () =>
       throttle(
         frameRows => {

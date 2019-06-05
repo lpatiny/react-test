@@ -7,24 +7,26 @@ import throttle from 'lodash/throttle';
 function DataPerMinute(props) {
   const [dataPerMinute, setDataPerMinute] = React.useState([]);
 
-  const throttled = React.useRef(
-    throttle(
-      dataRows => {
-        let data = eventReducer(dataRows, {
-          numberOfSlots: 10,
-          secondsPerSlot: 60,
-          propertyName: 'epoch'
-        });
-        setDataPerMinute(data);
-      },
-      5000,
-      { leading: true, trailing: false }
-    )
+  const throttled = React.useMemo(
+    () =>
+      throttle(
+        dataRows => {
+          let data = eventReducer(dataRows, {
+            numberOfSlots: 10,
+            secondsPerSlot: 60,
+            propertyName: 'epoch'
+          });
+          setDataPerMinute(data);
+        },
+        5000,
+        { leading: true, trailing: false }
+      ),
+    []
   );
 
   React.useEffect(() => {
-    throttled.current(props.dataRows);
-  }, [props.dataRows]);
+    throttled(props.dataRows);
+  }, [props.dataRows, throttled]);
 
   return (
     <Card>
